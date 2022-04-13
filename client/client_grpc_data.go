@@ -433,7 +433,7 @@ func splitSearchRequest(sch *entity.Schema, partitions []string,
 	})
 
 	ers := estRowSize(sch, outputFields)
-	maxBatch := int(math.Ceil(float64(5*1024*1024) / float64(ers*int64(topK))))
+	maxBatch := int(math.Ceil(float64(50*1024*1024*1024) / float64(ers*int64(topK))))
 	result := []*server.SearchRequest{}
 	for i := 0; i*maxBatch < len(vectors); i++ {
 		start := i * maxBatch
@@ -451,6 +451,8 @@ func splitSearchRequest(sch *entity.Schema, partitions []string,
 			DslType:          common.DslType_BoolExprV1,
 			OutputFields:     outputFields,
 			PlaceholderGroup: vector2PlaceholderGroupBytes(batchVectors),
+			GuaranteeTimestamp: 1,
+			Nq: int32(len(vectors)),
 		}
 		result = append(result, req)
 	}

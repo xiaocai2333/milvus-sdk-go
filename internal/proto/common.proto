@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package milvus.proto.common;
-option go_package="github.com/milvus-io/milvus-sdk-go/v2/internal/proto/common";
+option go_package="github.com/milvus-io/milvus/internal/proto/commonpb";
 
 
 enum ErrorCode {
@@ -141,6 +141,7 @@ enum MsgType {
     SegmentInfo = 600;
     SystemInfo = 601;
     GetRecoveryInfo = 602;
+    GetSegmentState = 603;
 
     /* SYSTEM CONTROL */
     TimeTick = 1200;
