@@ -3,7 +3,7 @@ package tests
 import (
 	"context"
 	"fmt"
-	"github.com/milvus-io/milvus-sdk-go/v2/client"
+	"github.com/xiaocai2333/milvus-sdk-go/v2/client"
 	"github.com/stretchr/testify/assert"
 	"reflect"
 	"testing"

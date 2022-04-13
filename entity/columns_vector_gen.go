@@ -6,7 +6,7 @@ package entity
 import (
 	"fmt"
 
-	"github.com/milvus-io/milvus-sdk-go/v2/internal/proto/schema"
+	"github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/schema"
 )
 
 
