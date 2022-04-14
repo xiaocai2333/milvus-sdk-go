@@ -248,15 +248,15 @@ func (c *grpcClient) Search(ctx context.Context, collName string, partitions []s
 		return []SearchResult{}, ErrClientNotReady
 	}
 	// 1. check all input params
-	if err := c.checkCollectionExists(ctx, collName); err != nil {
-		return nil, err
-	}
-	for _, partition := range partitions {
-		err := c.checkPartitionExists(ctx, collName, partition)
-		if err != nil {
-			return nil, err
-		}
-	}
+	//if err := c.checkCollectionExists(ctx, collName); err != nil {
+	//	return nil, err
+	//}
+	//for _, partition := range partitions {
+	//	err := c.checkPartitionExists(ctx, collName, partition)
+	//	if err != nil {
+	//		return nil, err
+	//	}
+	//}
 	// TODO maybe add expr analysis?
 	coll, err := c.DescribeCollection(ctx, collName)
 	if err != nil {
@@ -297,6 +297,7 @@ func (c *grpcClient) Search(ctx context.Context, collName string, partitions []s
 		}
 	}
 
+	checkCollDur := time.Now().UnixMicro()
 	// 2. Request milvus service
 	reqs := splitSearchRequest(coll.Schema, partitions, expr, outputFields, vectors, vectorField, metricType, topK, sp)
 	if len(reqs) == 0 {
@@ -307,15 +308,15 @@ func (c *grpcClient) Search(ctx context.Context, collName string, partitions []s
 	var batchErr error
 	sr := make([]SearchResult, 0, len(vectors))
 	mut := sync.Mutex{}
+	start := time.Now().UnixMicro()
 	for _, req := range reqs {
 		go func(req *server.SearchRequest) {
 			defer wg.Done()
-			start := time.Now().UnixMicro()
 			//fmt.Printf("sdk search start, time = %d \n", start)
 			resp, err := c.service.Search(ctx, req)
 			end := time.Now().UnixMicro()
-			fmt.Printf("sdk search end, receive time = %d,  start time = %d, end time = %d, cost = %d \n",
-				receiveTime, start, end, end-start)
+			fmt.Printf("sdk search end, receive time = %d, check coll end time = %d, start time = %d, end time = %d, cost = %d \n",
+				receiveTime, checkCollDur, start, end, end-start)
 			if err != nil {
 				batchErr = err
 				return
