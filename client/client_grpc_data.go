@@ -290,9 +290,10 @@ func (c *grpcClient) Search(ctx context.Context, collName string, partitions []s
 	for _, req := range reqs {
 		go func(req *server.SearchRequest) {
 			defer wg.Done()
-			fmt.Printf("sdk search start, time = %d, ", time.Now().UnixMicro())
+			start := time.Now().UnixMicro()
+			fmt.Printf("sdk search start, time = %d \n", start)
 			resp, err := c.service.Search(ctx, req)
-			fmt.Printf("sdk search end, time = %d, ", time.Now().UnixMicro())
+			fmt.Printf("sdk search end, start time = %d, end time = %d, cost = %d \n", start, time.Now().UnixMicro(), time.Now().UnixMicro()-start)
 			if err != nil {
 				batchErr = err
 				return
