@@ -241,8 +241,9 @@ func GetGoid() int64 {
 //Search with bool expression
 func (c *grpcClient) Search(ctx context.Context, collName string, partitions []string,
 	expr string, outputFields []string, vectors []entity.Vector, vectorField string, metricType entity.MetricType, topK int, sp entity.SearchParam) ([]SearchResult, error) {
-	fmt.Printf("sdk receive search, time = %d \n", time.Now().UnixMicro())
-	fmt.Println("goID ", GetGoid())
+	receiveTime := time.Now().UnixMicro()
+	//fmt.Printf("sdk receive search, time = %d \n", time.Now().UnixMicro())
+	//fmt.Println("goID ", GetGoid())
 	if c.service == nil {
 		return []SearchResult{}, ErrClientNotReady
 	}
@@ -310,9 +311,11 @@ func (c *grpcClient) Search(ctx context.Context, collName string, partitions []s
 		go func(req *server.SearchRequest) {
 			defer wg.Done()
 			start := time.Now().UnixMicro()
-			fmt.Printf("sdk search start, time = %d \n", start)
+			//fmt.Printf("sdk search start, time = %d \n", start)
 			resp, err := c.service.Search(ctx, req)
-			fmt.Printf("sdk search end, start time = %d, end time = %d, cost = %d \n", start, time.Now().UnixMicro(), time.Now().UnixMicro()-start)
+			end := time.Now().UnixMicro()
+			fmt.Printf("sdk search end, receive time = %d,  start time = %d, end time = %d, cost = %d \n",
+				receiveTime, start, end, end-start)
 			if err != nil {
 				batchErr = err
 				return
