@@ -86,6 +86,8 @@ type Client interface {
 	// index naming is not supported yet
 	GetIndexState(ctx context.Context, collName string, fieldName string) (entity.IndexState, error)
 
+	GetIndexBuildProgress(ctx context.Context, collName string, fieldName string) (int64, int64, error)
+
 	// -- basic operation --
 
 	// Insert column-based data into collection, returns id column values
@@ -96,7 +98,8 @@ type Client interface {
 	DeleteByPks(ctx context.Context, collName string, partitionName string, ids entity.Column) error
 	// Search search with bool expression
 	Search(ctx context.Context, collName string, partitions []string,
-		expr string, outputFields []string, vectors []entity.Vector, vectorField string, metricType entity.MetricType, topK int, sp entity.SearchParam) ([]SearchResult, error)
+		expr string, outputFields []string, vectors []entity.Vector, vectorField string, metricType entity.MetricType,
+		topK int, sp entity.SearchParam, guaranteeTime uint64) ([]SearchResult, error)
 	// QueryByPks query record by specified primary key(s)
 	QueryByPks(ctx context.Context, collectionName string, partitionNames []string, ids entity.Column, outputFields []string) ([]entity.Column, error)
 

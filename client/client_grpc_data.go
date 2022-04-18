@@ -239,8 +239,9 @@ func GetGoid() int64 {
 
 //Search with bool expression
 func (c *grpcClient) Search(ctx context.Context, collName string, partitions []string,
-	expr string, outputFields []string, vectors []entity.Vector, vectorField string, metricType entity.MetricType, topK int, sp entity.SearchParam) ([]SearchResult, error) {
-	receiveTime := time.Now().UnixMicro()
+	expr string, outputFields []string, vectors []entity.Vector, vectorField string, metricType entity.MetricType,
+	topK int, sp entity.SearchParam, guaranteeTime uint64) ([]SearchResult, error) {
+	//receiveTime := time.Now().UnixMicro()
 	//fmt.Printf("sdk receive search, time = %d \n", time.Now().UnixMicro())
 	//fmt.Println("goID ", GetGoid())
 	if c.service == nil {
@@ -296,9 +297,9 @@ func (c *grpcClient) Search(ctx context.Context, collName string, partitions []s
 	//	}
 	//}
 
-	checkCollDur := time.Now().UnixMicro()
+	//checkCollDur := time.Now().UnixMicro()
 	// 2. Request milvus service
-	reqs := splitSearchRequest(collName, partitions, expr, outputFields, vectors, vectorField, metricType, topK, sp)
+	reqs := splitSearchRequest(collName, partitions, expr, outputFields, vectors, vectorField, metricType, topK, sp, guaranteeTime)
 	if len(reqs) == 0 {
 		return nil, errors.New("empty request generated")
 	}
@@ -307,15 +308,15 @@ func (c *grpcClient) Search(ctx context.Context, collName string, partitions []s
 	var batchErr error
 	sr := make([]SearchResult, 0, len(vectors))
 	mut := sync.Mutex{}
-	start := time.Now().UnixMicro()
+	//start := time.Now().UnixMicro()
 	for _, req := range reqs {
 		go func(req *server.SearchRequest) {
 			defer wg.Done()
 			//fmt.Printf("sdk search start, time = %d \n", start)
 			resp, err := c.service.Search(ctx, req)
-			end := time.Now().UnixMicro()
-			fmt.Printf("sdk search end, receive time = %d, check coll end time = %d, start time = %d, end time = %d, cost = %d \n",
-				receiveTime, checkCollDur, start, end, end-start)
+			//end := time.Now().UnixMicro()
+			//fmt.Printf("sdk search end, receive time = %d, check coll end time = %d, start time = %d, end time = %d, cost = %d \n",
+			//	receiveTime, checkCollDur, start, end, end-start)
 			if err != nil {
 				batchErr = err
 				return
@@ -446,7 +447,7 @@ func getPKField(schema *entity.Schema) *entity.Field {
 
 func splitSearchRequest(collName string, partitions []string,
 	expr string, outputFields []string, vectors []entity.Vector, vectorField string,
-	metricType entity.MetricType, topK int, sp entity.SearchParam) []*server.SearchRequest {
+	metricType entity.MetricType, topK int, sp entity.SearchParam, guaranteeTime uint64) []*server.SearchRequest {
 	params := sp.Params()
 	bs, _ := json.Marshal(params)
 	searchParams := entity.MapKvPairs(map[string]string{
@@ -470,7 +471,7 @@ func splitSearchRequest(collName string, partitions []string,
 		DslType:          common.DslType_BoolExprV1,
 		OutputFields:     outputFields,
 		PlaceholderGroup: vector2PlaceholderGroupBytes(vectors),
-		GuaranteeTimestamp: 1,
+		GuaranteeTimestamp: guaranteeTime,
 		Nq: int32(len(vectors)),
 	}
 	result = append(result, req)
