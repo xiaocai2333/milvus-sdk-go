@@ -16,7 +16,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"runtime"
 	"strconv"
 	"strings"
 	"sync"
@@ -221,36 +220,14 @@ func (c *grpcClient) DeleteByPks(ctx context.Context, collName string, partition
 	return nil
 }
 
-func GetGoid() int64 {
-	var (
-		buf [64]byte
-		n   = runtime.Stack(buf[:], false)
-		stk = strings.TrimPrefix(string(buf[:n]), "goroutine ")
-	)
-
-	idField := strings.Fields(stk)[0]
-	id, err := strconv.Atoi(idField)
-	if err != nil {
-		panic(fmt.Errorf("can not get goroutine id: %v", err))
-	}
-
-	return int64(id)
-}
-
 //Search with bool expression
 func (c *grpcClient) Search(ctx context.Context, collName string, partitions []string,
 	expr string, outputFields []string, vectors []entity.Vector, vectorField string, metricType entity.MetricType,
 	topK int, sp entity.SearchParam, guaranteeTime uint64) ([]SearchResult, error) {
-	//receiveTime := time.Now().UnixMicro()
-	//fmt.Printf("sdk receive search, time = %d \n", time.Now().UnixMicro())
-	//fmt.Println("goID ", GetGoid())
 	if c.service == nil {
 		return []SearchResult{}, ErrClientNotReady
 	}
-	// 1. check all input params
-	//if err := c.checkCollectionExists(ctx, collName); err != nil {
-	//	return nil, err
-	//}
+	//1. check all input params
 	//for _, partition := range partitions {
 	//	err := c.checkPartitionExists(ctx, collName, partition)
 	//	if err != nil {
