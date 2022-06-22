@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/schema"
 	"github.com/stretchr/testify/assert"
+	"github.com/zhagnlu/milvus-sdk-go/v2/internal/proto/schema"
 )
 
 func TestVectors(t *testing.T) {

@@ -16,7 +16,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/xiaocai2333/milvus-sdk-go/v2/entity"
+	"github.com/zhagnlu/milvus-sdk-go/v2/entity"
 	"google.golang.org/grpc"
 )
 

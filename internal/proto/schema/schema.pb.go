@@ -6,7 +6,7 @@ package schema
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	common "github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/common"
+	common "github.com/zhagnlu/milvus-sdk-go/v2/internal/proto/common"
 	math "math"
 )
 

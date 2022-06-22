@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/schema"
+	"github.com/zhagnlu/milvus-sdk-go/v2/internal/proto/schema"
 )
 
 func TestColumnBool(t *testing.T) {

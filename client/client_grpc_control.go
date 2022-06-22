@@ -20,9 +20,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/xiaocai2333/milvus-sdk-go/v2/entity"
-	"github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/server"
-	"github.com/xiaocai2333/milvus-sdk-go/v2/internal/utils/tso"
+	"github.com/zhagnlu/milvus-sdk-go/v2/entity"
+	"github.com/zhagnlu/milvus-sdk-go/v2/internal/proto/server"
+	"github.com/zhagnlu/milvus-sdk-go/v2/internal/utils/tso"
 )
 
 // ManualCompaction triggers a compaction on provided collection

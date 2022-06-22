@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xiaocai2333/milvus-sdk-go/v2/client"
-	"github.com/xiaocai2333/milvus-sdk-go/v2/entity"
 	"github.com/stretchr/testify/assert"
+	"github.com/zhagnlu/milvus-sdk-go/v2/client"
+	"github.com/zhagnlu/milvus-sdk-go/v2/entity"
 )
 
 func TestSearch(t *testing.T) {
