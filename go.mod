@@ -8,4 +8,5 @@ require (
 	github.com/google/go-cmp v0.4.0 // indirect
 	github.com/stretchr/testify v1.7.0
 	google.golang.org/grpc v1.31.0
+
 )
