@@ -103,6 +103,8 @@ type Client interface {
 	// QueryByPks query record by specified primary key(s)
 	QueryByPks(ctx context.Context, collectionName string, partitionNames []string, ids entity.Column, outputFields []string) ([]entity.Column, error)
 
+	// GetQuerySegmentInfo get query query cluster segment loaded info
+	GetQuerySegmentInfo(ctx context.Context, collName string) ([]*entity.Segment, error)
 	// CalcDistance calculate the distance between vectors specified by ids or provided
 	CalcDistance(ctx context.Context, collName string, partitions []string,
 		metricType entity.MetricType, opLeft, opRight entity.Column) (entity.Column, error)
