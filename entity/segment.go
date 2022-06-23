@@ -19,6 +19,7 @@ type Segment struct {
 	CollectionID int64
 	ParititionID int64
 	IndexID      int64
+	IndexName    string
 
 	NumRows int64
 	State   common.SegmentState

@@ -530,7 +530,9 @@ func (c *grpcClient) GetQuerySegmentInfo(ctx context.Context, collName string) (
 			CollectionID: info.GetCollectionID(),
 			ParititionID: info.GetPartitionID(),
 			IndexID:      info.GetIndexID(),
+			IndexName:    info.GetIndexName(),
 			NumRows:      info.GetNumRows(),
+			State:        info.GetState(),
 		})
 	}
 
