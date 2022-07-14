@@ -8,10 +8,10 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/xiaocai2333/milvus-sdk-go/v2/entity"
-	"github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/common"
-	"github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/server"
 	"github.com/stretchr/testify/assert"
+	"github.com/zhagnlu/milvus-sdk-go/v2/entity"
+	"github.com/zhagnlu/milvus-sdk-go/v2/internal/proto/common"
+	"github.com/zhagnlu/milvus-sdk-go/v2/internal/proto/server"
 )
 
 func TestGrpcClientCreateIndex(t *testing.T) {

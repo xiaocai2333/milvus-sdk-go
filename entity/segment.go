@@ -11,7 +11,7 @@
 
 package entity
 
-import "github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/common"
+import "github.com/zhagnlu/milvus-sdk-go/v2/internal/proto/common"
 
 // Segment represent segment in milvus
 type Segment struct {
@@ -19,6 +19,7 @@ type Segment struct {
 	CollectionID int64
 	ParititionID int64
 	IndexID      int64
+	IndexName    string
 
 	NumRows int64
 	State   common.SegmentState

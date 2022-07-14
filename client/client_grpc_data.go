@@ -22,10 +22,10 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/xiaocai2333/milvus-sdk-go/v2/entity"
-	"github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/common"
-	"github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/schema"
-	"github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/server"
+	"github.com/zhagnlu/milvus-sdk-go/v2/entity"
+	"github.com/zhagnlu/milvus-sdk-go/v2/internal/proto/common"
+	"github.com/zhagnlu/milvus-sdk-go/v2/internal/proto/schema"
+	"github.com/zhagnlu/milvus-sdk-go/v2/internal/proto/server"
 )
 
 // Insert Index  into collection with column-based format
@@ -440,16 +440,16 @@ func splitSearchRequest(collName string, partitions []string,
 
 	result := []*server.SearchRequest{}
 	req := &server.SearchRequest{
-		DbName:           "",
-		CollectionName:   collName,
-		PartitionNames:   partitions,
-		SearchParams:     searchParams,
-		Dsl:              expr,
-		DslType:          common.DslType_BoolExprV1,
-		OutputFields:     outputFields,
-		PlaceholderGroup: vector2PlaceholderGroupBytes(vectors),
+		DbName:             "",
+		CollectionName:     collName,
+		PartitionNames:     partitions,
+		SearchParams:       searchParams,
+		Dsl:                expr,
+		DslType:            common.DslType_BoolExprV1,
+		OutputFields:       outputFields,
+		PlaceholderGroup:   vector2PlaceholderGroupBytes(vectors),
 		GuaranteeTimestamp: guaranteeTime,
-		Nq: int32(len(vectors)),
+		Nq:                 int32(len(vectors)),
 	}
 	result = append(result, req)
 	//for i := 0; i*maxBatch < len(vectors); i++ {
@@ -530,7 +530,9 @@ func (c *grpcClient) GetQuerySegmentInfo(ctx context.Context, collName string) (
 			CollectionID: info.GetCollectionID(),
 			ParititionID: info.GetPartitionID(),
 			IndexID:      info.GetIndexID(),
+			IndexName:    info.GetIndexName(),
 			NumRows:      info.GetNumRows(),
+			State:        info.GetState(),
 		})
 	}
 

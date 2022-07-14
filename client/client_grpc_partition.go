@@ -17,9 +17,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/xiaocai2333/milvus-sdk-go/v2/entity"
-	"github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/common"
-	"github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/server"
+	"github.com/zhagnlu/milvus-sdk-go/v2/entity"
+	"github.com/zhagnlu/milvus-sdk-go/v2/internal/proto/common"
+	"github.com/zhagnlu/milvus-sdk-go/v2/internal/proto/server"
 )
 
 // CreatePartition create partition for collection
