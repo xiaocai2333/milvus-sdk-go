@@ -7,7 +7,7 @@
 package schema
 
 import (
-	common "github.com/milvus-io/milvus-sdk-go/v2/internal/proto/common"
+	common "github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"

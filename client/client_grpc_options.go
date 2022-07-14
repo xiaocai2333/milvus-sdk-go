@@ -13,8 +13,8 @@ package client
 
 import (
 	"errors"
-	"github.com/milvus-io/milvus-sdk-go/v2/entity"
-	server "github.com/milvus-io/milvus-sdk-go/v2/internal/proto/server"
+	"github.com/xiaocai2333/milvus-sdk-go/v2/entity"
+	server "github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/server"
 )
 
 // CreateCollectionOption is an option that is used to modify CreateCollectionRequest

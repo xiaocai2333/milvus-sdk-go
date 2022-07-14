@@ -3,8 +3,8 @@ package tests
 import (
 	"context"
 	"fmt"
-	"github.com/milvus-io/milvus-sdk-go/v2/entity"
-	ut "github.com/milvus-io/milvus-sdk-go/v2/tests/testutil"
+	"github.com/xiaocai2333/milvus-sdk-go/v2/entity"
+	ut "github.com/xiaocai2333/milvus-sdk-go/v2/tests/testutil"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

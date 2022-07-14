@@ -18,9 +18,9 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/milvus-io/milvus-sdk-go/v2/entity"
-	common "github.com/milvus-io/milvus-sdk-go/v2/internal/proto/common"
-	server "github.com/milvus-io/milvus-sdk-go/v2/internal/proto/server"
+	"github.com/xiaocai2333/milvus-sdk-go/v2/entity"
+	common "github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/common"
+	server "github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/server"
 	"google.golang.org/grpc"
 )
 

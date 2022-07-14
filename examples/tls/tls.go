@@ -14,8 +14,8 @@ import (
 
 	"google.golang.org/grpc"
 
-	"github.com/milvus-io/milvus-sdk-go/v2/client"
-	"github.com/milvus-io/milvus-sdk-go/v2/entity"
+	"github.com/xiaocai2333/milvus-sdk-go/v2/client"
+	"github.com/xiaocai2333/milvus-sdk-go/v2/entity"
 	"google.golang.org/grpc/credentials"
 )
 

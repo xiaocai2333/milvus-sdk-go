@@ -8,8 +8,8 @@ package server
 
 import (
 	context "context"
-	common "github.com/milvus-io/milvus-sdk-go/v2/internal/proto/common"
-	schema "github.com/milvus-io/milvus-sdk-go/v2/internal/proto/schema"
+	common "github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/common"
+	schema "github.com/xiaocai2333/milvus-sdk-go/v2/internal/proto/schema"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
