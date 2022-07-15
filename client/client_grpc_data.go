@@ -471,8 +471,8 @@ func splitSearchRequest(sch *entity.Schema, partitions []string,
 			DslType:            common.DslType_BoolExprV1,
 			OutputFields:       outputFields,
 			SearchParams:       searchParams,
-			TravelTimestamp:    opt.GuaranteeTimestamp,
-			GuaranteeTimestamp: opt.TravelTimestamp,
+			TravelTimestamp:    opt.TravelTimestamp,
+			GuaranteeTimestamp: opt.GuaranteeTimestamp,
 		}
 		result = append(result, req)
 	}
