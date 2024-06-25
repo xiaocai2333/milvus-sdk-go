@@ -35,6 +35,10 @@ func (i *IndexSparseInverted) Params() map[string]string {
 	}
 }
 
+func (i *IndexSparseInverted) Progress() map[string]string {
+	return map[string]string{}
+}
+
 type IndexSparseInvertedSearchParam struct {
 	baseSearchParams
 }
